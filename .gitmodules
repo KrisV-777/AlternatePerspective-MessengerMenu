@@ -1,4 +1,0 @@
-
-[submodule "external"]
-	path = external
-	url = https://github.com/greensock/GreenSock-AS2.git
