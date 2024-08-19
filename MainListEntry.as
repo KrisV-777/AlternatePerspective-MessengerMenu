@@ -70,7 +70,7 @@ class MainListEntry extends BasicListEntry
 			_height = __height;
 			TweenLite.to(this,0.2,{_width:__width + 2, _height:__height + 2});
 		} else {
-			_alpha = enabled ? 75 : 15;
+			_alpha = enabled ? 60 : 15;
 			TweenLite.to(this,0.2,{_width:__width, _height:__height});
 		}
 	}
