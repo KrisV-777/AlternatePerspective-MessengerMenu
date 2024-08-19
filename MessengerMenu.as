@@ -190,7 +190,7 @@ class MessengerMenu extends MovieClip
 
 	private function test() {
 		var arg = new Array();
-		for (var i = 0; i < 12; i++) {
+		for (var i = 0; i < 13; i++) {
 			arg.push({
 				name: i
 			});

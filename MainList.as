@@ -29,19 +29,6 @@ class MainList extends skyui.components.list.ScrollingList
 	private var _maxEntryWidthCount;
 	private var _listWidth;
 
-	// @Override ScrollingList
-	public function set scrollPosition(a_newPosition: Number)
-	{
-		a_newPosition -= a_newPosition % _maxEntryWidthCount;
-		if (a_newPosition == _scrollPosition || a_newPosition < 0 || a_newPosition > _maxScrollPosition)
-			return;
-			
-		if (scrollbar != undefined)
-			scrollbar.position = a_newPosition;
-		else
-			updateScrollPosition(a_newPosition);
-	}
-
   /* INITIALIZATION */
 
 	public function MainList()
@@ -51,6 +38,8 @@ class MainList extends skyui.components.list.ScrollingList
 		_listWidth = background._width - leftBorder - rightBorder;
 		_maxEntryWidthCount = Math.floor(_listWidth / entryWidth);
 		_maxListIndex = Math.floor(_listHeight / entryHeight) * _maxEntryWidthCount;
+
+		scrollDelta = _maxEntryWidthCount;
 	}
 
 	// @override ScrollingList
@@ -127,9 +116,21 @@ class MainList extends skyui.components.list.ScrollingList
 	// @GFx
 	public function handleInput(details: InputDetails, pathToFocus: Array): Boolean
 	{		
+		if (disableInput)
+			return false;
+
 		if (super.handleInput(details, pathToFocus))
 			return true;
 
+		// if (GlobalFunc.IsKeyPressed(details)) {
+		// 	if (details.navEquivalent == NavigationCode.LEFT) {
+		// 		moveSelectionUp(details.navEquivalent == NavigationCode.PAGE_UP);
+		// 		return true;
+		// 	} else if (details.navEquivalent == NavigationCode.RIGHT) {
+		// 		moveSelectionDown(details.navEquivalent == NavigationCode.PAGE_DOWN);
+		// 		return true;
+		// 	}
+		// }
 		return false;
 	}
 
@@ -137,9 +138,9 @@ class MainList extends skyui.components.list.ScrollingList
 	private function calculateMaxScrollPosition(): Void
  	{
 		var m = getListEnumSize();
+		var t = m - _maxListIndex;
 		var e = m % _maxEntryWidthCount;
-		var t = m - _maxListIndex + (e == 0 ? 0 : _maxEntryWidthCount);
-		_maxScrollPosition = (t > 0) ? t : 0;
+		_maxScrollPosition = (t > 0) ? (t - e + _maxEntryWidthCount) : 0;
 
 		updateScrollbar();
 
@@ -150,7 +151,11 @@ class MainList extends skyui.components.list.ScrollingList
 	// @Override ScrollingList
 	private function updateScrollPosition(a_position: Number): Void
 	{
-		_scrollPosition = a_position - (a_position % _maxEntryWidthCount);
+		var newPosition =  a_position - (a_position % _maxEntryWidthCount);
+		if (newPosition == _scrollPosition)
+			return;
+		_scrollPosition = newPosition;
 		UpdateList();
 	}
+
 }
