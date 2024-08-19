@@ -122,16 +122,58 @@ class MainList extends skyui.components.list.ScrollingList
 		if (super.handleInput(details, pathToFocus))
 			return true;
 
-		// if (GlobalFunc.IsKeyPressed(details)) {
-		// 	if (details.navEquivalent == NavigationCode.LEFT) {
-		// 		moveSelectionUp(details.navEquivalent == NavigationCode.PAGE_UP);
-		// 		return true;
-		// 	} else if (details.navEquivalent == NavigationCode.RIGHT) {
-		// 		moveSelectionDown(details.navEquivalent == NavigationCode.PAGE_DOWN);
-		// 		return true;
-		// 	}
-		// }
+		if (!disableSelection && GlobalFunc.IsKeyPressed(details)) {
+			var s = getSelectedListEnumIndex();
+			var m = s % _maxEntryWidthCount;
+			var idx = undefined;
+			if (details.navEquivalent == NavigationCode.RIGHT) {
+				if (s < getListEnumSize() - 1 && m != _maxEntryWidthCount - 1)
+					idx = getListEnumRelativeIndex(1);
+			} else if (details.navEquivalent == NavigationCode.LEFT) {
+				if (s > 0 && m > 0)
+					idx = getListEnumRelativeIndex(-1);
+			}
+			if (idx != undefined) {
+				doSetSelectedIndex(idx, SELECT_KEYBOARD);
+				isMouseDrivenNav = false;
+				if (isPressOnMove)
+					onItemPress();
+				return true;
+			}
+		}
 		return false;
+	}
+
+	// @Override ScrollingList
+	public function moveSelectionDown(a_bScrollPage: Boolean): Void
+	{
+		if (!disableSelection && !a_bScrollPage) {
+			if (_selectedIndex == -1) {
+				selectDefaultIndex(true);
+			} else {
+				var idx;
+				if (getSelectedListEnumIndex() < getListEnumSize() - scrollDelta) {
+					idx = getListEnumRelativeIndex(scrollDelta);
+				} else {
+					var w = getListEnumSize() - getSelectedListEnumIndex();
+					var v = getListEnumSize() % _maxEntryWidthCount
+					if (w <= v)
+						return;
+					idx = getListEnumSize() - 1;
+				}
+				doSetSelectedIndex(idx, SELECT_KEYBOARD);
+				isMouseDrivenNav = false;
+				
+				if (isPressOnMove)
+					onItemPress();
+			}
+		} else if (a_bScrollPage) {
+			var t = scrollPosition + _listIndex;
+			scrollPosition = t < _maxScrollPosition ? t : _maxScrollPosition;
+			doSetSelectedIndex(-1, SELECT_MOUSE);
+		} else {
+			scrollPosition = scrollPosition + scrollDelta;
+		}
 	}
 
 	// @Override ScrollingList
