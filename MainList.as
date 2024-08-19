@@ -13,13 +13,7 @@ import skyui.util.ConfigManager;
 
 
 class MainList extends skyui.components.list.ScrollingList
-{
-  /* PRIVATE VARIABLES */
-
-	private var _previousColumnKey: Number = -1;
-	private var _nextColumnKey: Number = -1;
-	private var _sortOrderKey: Number = -1;	
-	
+{	
   /* PROPERTIES */ 
 	
 	public var entryWidth: Number = 170;

@@ -71,14 +71,14 @@ class MessengerMenu extends MovieClip
 				mod: "N/A",
 				enabled: true,
 				text: "$AltPersp_None",
-				description: "Begin your journey in the Resting Pilgrim, Helgen's Inn.",
+				description: "$AltPersp_NoneDescr",
 				color: _CSPECIAL
 			},
 			{
 				mod: "N/A",
 				enabled: true,
 				text: "$AltPersp_Random",
-				description: "Randomly select an available possible starting quest.",
+				description: "$AltPersp_RandomDescr",
 				color: _CSPECIAL,
 				id: 0
 			},
@@ -177,7 +177,6 @@ class MessengerMenu extends MovieClip
 	var _testID
 	public function onLoad(): Void
 	{
-		// shopLists.addEventListener("itemHighlightChange", this, "onItemHighlightChange");
 		// shopLists.addEventListener("showItemsList", this, "onShowItemsList");
 
 		// shopLists.itemList.addEventListener("itemPress", this, "onItemSelect");
@@ -218,18 +217,6 @@ class MessengerMenu extends MovieClip
 	}
 
   /* PRIVATE FUNCTIONS */
-	private function onShowItemsList(event: Object): Void
-	{
-		// shopLists.showItemsList();
-
-		onItemHighlightChange(event);
-	}
-
-	private function onItemHighlightChange(event: Object): Void
-	{
-		if (event.index != -1)
-			updateBottomBar(true);
-	}
 
 	private function updateBottomBar(a_bSelected: Boolean): Void
 	{
