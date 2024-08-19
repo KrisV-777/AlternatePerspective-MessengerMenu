@@ -64,13 +64,13 @@ class MainListEntry extends BasicListEntry
 		name.text = a_entryObject.text;
 
 		if (a_entryObject == a_state.list.selectedEntry) {
-			_alpha = enabled ? 90 : 25;
+			_alpha = enabled ? 100 : 25;
 
 			_width = __width;
 			_height = __height;
 			TweenLite.to(this,0.2,{_width:__width + 2, _height:__height + 2});
 		} else {
-			_alpha = enabled ? 45 : 15;
+			_alpha = enabled ? 75 : 15;
 			TweenLite.to(this,0.2,{_width:__width, _height:__height});
 		}
 	}
