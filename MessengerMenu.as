@@ -146,8 +146,9 @@ class MessengerMenu extends MovieClip
 			])
 		];
 		skse.Log("args = " + arguments.length + "/" + arguments[0].length);
-		for (var i = 0; i < arguments.length; i++) {
-			var opt = loadData(arguments[i]);
+		for (var i = 0; i < arguments[0].length; i++) {
+			var it = arguments[0][i];
+			var opt = loadData(it);
 			options.push(opt);
 		}
 		menu.setItems(options);
@@ -173,7 +174,7 @@ class MessengerMenu extends MovieClip
 		positionFixedElements();
 		navPanel.hideButtons();
 
-		// _testID = setTimeout(Delegate.create(this, test), 1000);
+		_testID = setTimeout(Delegate.create(this, test), 1000);
 	}
 
 	private function test() {
@@ -196,14 +197,13 @@ class MessengerMenu extends MovieClip
 		if (nextClip.handleInput(details, pathToFocus))
 			return true;
 
-
 		if (GlobalFunc.IsKeyPressed(details)) {
 			switch (details.navEquivalent) {
 				case NavigationCode.TAB :
 				case NavigationCode.SHIFT_TAB :
 				case NavigationCode.ESCAPE :
 					{
-						onCloseMenu({});
+						onCloseMenu({event: "", id: -1});
 					};
 					break;
 			}
