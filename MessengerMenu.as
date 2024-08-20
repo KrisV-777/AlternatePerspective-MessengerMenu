@@ -20,10 +20,6 @@ import skyui.components.ButtonPanel;
 import com.greensock.*;
 import com.greensock.easing.*;
 
-import BottomBarEX;
-import ShopLists;
-import CategoryList;
-
 class MessengerMenu extends MovieClip
 {
 	public static var OPTION_NONE = -1;
@@ -34,9 +30,6 @@ class MessengerMenu extends MovieClip
 
 	public var menu: OptionList;
 	public var background: MovieClip;
-
-	public var bottomBarEX: MovieClip;
-	public var navPanel: ButtonPanel;
 
   /* PRIVATE VARIABLES */
 
@@ -162,7 +155,6 @@ class MessengerMenu extends MovieClip
 	public function MessengerMenu()
 	{
 		super();
-		navPanel = bottomBarEX.bottomBar.buttonPanel;
 
 		Mouse.addListener(this);
 		FocusHandler.instance.setFocus(this, 0);
@@ -171,9 +163,6 @@ class MessengerMenu extends MovieClip
 	public function onLoad(): Void
 	{
 		menu.addEventListener("closeMenu", this, "onCloseMenu");
-
-		positionFixedElements();
-		navPanel.hideButtons();
 
 		// setTimeout(Delegate.create(this, test), 1000);
 	}
@@ -225,22 +214,6 @@ class MessengerMenu extends MovieClip
 	}
 
   /* PRIVATE FUNCTIONS */
-
-	private function updateBottomBar(a_bSelected: Boolean): Void
-	{
-		navPanel.clearButtons();
-
-		navPanel.addButton({text: "$Exit", controls: _cancelControls});
-		navPanel.updateButtons(true);
-	}
-
-	private function positionFixedElements(): Void
-	{
-		var leftEdge = Stage.visibleRect.x + Stage.safeRect.x;
-		var rightEdge = Stage.visibleRect.x + Stage.visibleRect.width - Stage.safeRect.x;
-
-		bottomBarEX.bottomBar.positionElements(leftEdge, rightEdge);
-	}
 
 	private function fadedOut()
 	{
