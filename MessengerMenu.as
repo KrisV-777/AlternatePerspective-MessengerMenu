@@ -232,6 +232,7 @@ class MessengerMenu extends MovieClip
 
 	public function onCloseMenu(event: Object) {
 		trace("Closing Menu with Option " + event.mod + " / " + event.id);
+		skse.SendModEvent("AP_MessengerMenuSelect", event.mod, event.id);
 		skse.CloseMenu("CustomMenu");
 	}
 
