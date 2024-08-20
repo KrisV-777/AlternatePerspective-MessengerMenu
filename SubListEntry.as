@@ -34,9 +34,7 @@ class SubListEntry extends BasicListEntry
 	// @override BasicListEntry
 	public function setEntry(a_entryObject:Object, a_state:ListState):Void
 	{
-		if (a_entryObject.id > 0) {
-			name.text = a_entryObject.text;
-		}
+		name.text = a_entryObject.text;
 
 		var selected = a_entryObject == a_state.list.selectedEntry;
 		selectIndicator._visible = selected;
@@ -46,7 +44,7 @@ class SubListEntry extends BasicListEntry
 		} else {
 			_alpha = enabled ? 100 : 25;
 
-			var color = a_state.list["_highLightColor"];
+			var color = a_entryObject.color || a_state.list["_highLightColor"];
 			if (!color) {
 				color = 0;
 			}
