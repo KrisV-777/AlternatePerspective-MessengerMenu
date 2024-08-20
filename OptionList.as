@@ -82,13 +82,13 @@ class OptionList extends MovieClip
 	{
 		subOptions.listEnumeration = new BasicEnumeration(subOptions.entryList);
 		subOptions.addEventListener("itemPress", this, "onItemPressSub");
-		subOptions.addEventListener("itemPressAux", this, "onItemPressSub");
+		// subOptions.addEventListener("itemPressAux", this, "onItemPressSub");
 
 		mainOptions.listEnumeration = new BasicEnumeration(mainOptions.entryList);
 		mainOptions.addEventListener("clickDisabled",this,"onClickDisabled");
 		mainOptions.addEventListener("selectionChange",this,"onItemsListSelectionChange");
 		mainOptions.addEventListener("itemPress",this,"onItemPress");
-		mainOptions.addEventListener("itemPressAux",this,"onItemPress");
+		// mainOptions.addEventListener("itemPressAux",this,"onItemPress");
 
 		setActiveLists(mainOptions,subOptions);
 
