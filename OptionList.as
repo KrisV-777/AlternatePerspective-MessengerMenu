@@ -67,6 +67,7 @@ class OptionList extends MovieClip
 		EventDispatcher.initialize(this);
 
 		ConfigManager.registerLoadCallback(this,"onConfigLoad");
+		optiondescription.text = ""
 
 		mainOptions.suspended = true;
 		subOptions.suspended = true;
