@@ -19,12 +19,14 @@ class SubList extends skyui.components.list.ScrollingList
 
   // Variables
   public var _highLightColor;
+  public var _selectDisable;
 
   /* INITIALIZATION */
 
 	public function SubList()
 	{
 		super();
+    _selectDisable = false;
 	}
 
   // public functions

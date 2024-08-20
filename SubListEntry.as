@@ -16,11 +16,14 @@ class SubListEntry extends BasicListEntry
 
 	// Variables
 
+	private var _selected
+
 	// Init
 
 	public function SubListEntry()
 	{
 		super();
+		_selected = false;
 	}
 
 	// Public Functions
@@ -37,11 +40,15 @@ class SubListEntry extends BasicListEntry
 		name.text = a_entryObject.text;
 
 		var selected = a_entryObject == a_state.list.selectedEntry;
-		selectIndicator._visible = selected;
-		selectIndicator.clear();
-		if (!selected) {
-			_alpha = enabled ? 60 : 15;
+		if (a_state.list["_selectDisable"]) {
+			enabled = false;
 		} else {
+			_selected = selected;
+		}
+
+		selectIndicator.clear();
+		selectIndicator._visible = _selected;
+		if (_selected) {
 			_alpha = enabled ? 100 : 25;
 
 			var color = a_entryObject.color || a_state.list["_highLightColor"];
@@ -61,6 +68,8 @@ class SubListEntry extends BasicListEntry
 			selectIndicator.lineTo(matrix.x,matrix.y + matrix.h);
 			selectIndicator.lineTo(matrix.x,matrix.y);
 			selectIndicator.endFill();
+		} else {
+			_alpha = enabled ? 60 : 15;
 		}
 	}
 

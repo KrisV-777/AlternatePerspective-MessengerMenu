@@ -46,7 +46,11 @@ class MainListEntry extends BasicListEntry
 	// @override BasicListEntry
 	public function setEntry(a_entryObject:Object, a_state:ListState):Void
 	{
-		enabled = a_entryObject.enabled;
+		var selected = a_entryObject == a_state.list.selectedEntry;
+		if (a_state.list["_selectDisable"])
+			enabled = selected;
+		else
+			enabled = a_entryObject.enabled;
 
 		var transform = new ColorTransform();
 		if (a_entryObject.color) {
@@ -63,7 +67,7 @@ class MainListEntry extends BasicListEntry
 		index.text = a_entryObject.itemIndex;
 		name.text = a_entryObject.text;
 
-		if (a_entryObject == a_state.list.selectedEntry) {
+		if (selected) {
 			_alpha = enabled ? 100 : 25;
 
 			_width = __width;

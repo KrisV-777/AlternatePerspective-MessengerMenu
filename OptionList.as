@@ -225,6 +225,8 @@ class OptionList extends MovieClip
 			subOptions.setHighlightColor(_selectedMain.color);
 			return;
 		}
+		mainOptions._selectDisable = true;
+		mainOptions.InvalidateData();
 		var entry = _selectedMain;
 		var mod = entry.mod, id = entry.id;
 		if (entry.id != MessengerMenu.OPTION_NONE) {
@@ -249,6 +251,8 @@ class OptionList extends MovieClip
 
 	private function onItemPressSub(event:Object):Void
 	{
+		subOptions._selectDisable = true;
+		subOptions.InvalidateData();
 		var it = event.entry;
 		if (it.id == MessengerMenu.OPTION_RANDOM && _selectedMain.suboptions.length > 1) {
 			do {

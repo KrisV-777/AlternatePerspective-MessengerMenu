@@ -17,10 +17,12 @@ import skyui.util.ConfigManager;
 import skyui.util.Translator;
 import skyui.components.ButtonPanel;
 
+import com.greensock.*;
+import com.greensock.easing.*;
+
 import BottomBarEX;
 import ShopLists;
 import CategoryList;
-
 
 class MessengerMenu extends MovieClip
 {
@@ -166,7 +168,6 @@ class MessengerMenu extends MovieClip
 		FocusHandler.instance.setFocus(this, 0);
 	}
 
-	var _testID
 	public function onLoad(): Void
 	{
 		menu.addEventListener("closeMenu", this, "onCloseMenu");
@@ -174,7 +175,7 @@ class MessengerMenu extends MovieClip
 		positionFixedElements();
 		navPanel.hideButtons();
 
-		_testID = setTimeout(Delegate.create(this, test), 1000);
+		// setTimeout(Delegate.create(this, test), 1000);
 	}
 
 	private function test() {
@@ -219,7 +220,8 @@ class MessengerMenu extends MovieClip
 	public function onCloseMenu(event: Object) {
 		trace("Closing Menu with Option " + event.mod + " / " + event.id);
 		skse.SendModEvent("AP_MessengerMenuSelect", event.mod, event.id);
-		skse.CloseMenu("CustomMenu");
+		TweenLite.to(this, 0.6, {_alpha: 0, onComplete: skse.CloseMenu, onCompleteParams: ["CustomMenu"]});
+		// skse.CloseMenu("CustomMenu");
 	}
 
   /* PRIVATE FUNCTIONS */
