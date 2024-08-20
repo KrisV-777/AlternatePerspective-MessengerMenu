@@ -36,6 +36,11 @@ class MainList extends skyui.components.list.ScrollingList
 		scrollDelta = _maxEntryWidthCount;
 	}
 
+	public function getNthObj(n)
+	{
+		return getListEnumEntry(n);
+	}
+
 	// @override ScrollingList
 	public function onLoad(): Void
 	{

@@ -24,6 +24,8 @@ import CategoryList;
 
 class MessengerMenu extends MovieClip
 {
+	public static var OPTION_NONE = -1;
+	public static var OPTION_RANDOM = 0;
 	private static var _CSPECIAL = 0xD92F2F;
 
 	/* STAGE */
@@ -72,7 +74,8 @@ class MessengerMenu extends MovieClip
 				enabled: true,
 				text: "$AltPersp_None",
 				description: "$AltPersp_NoneDescr",
-				color: _CSPECIAL
+				color: _CSPECIAL,
+				id: OPTION_NONE
 			},
 			{
 				mod: "N/A",
@@ -80,10 +83,10 @@ class MessengerMenu extends MovieClip
 				text: "$AltPersp_Random",
 				description: "$AltPersp_RandomDescr",
 				color: _CSPECIAL,
-				id: 0
+				id: OPTION_RANDOM
 			},
 			makeDefault("$AltPersp_Regular", "$AltPersp_RegularDescr", undefined, [
-				{ text: "$AltPersp_Random", id: 0, color: _CSPECIAL },
+				{ text: "$AltPersp_Random", id: OPTION_RANDOM, color: _CSPECIAL },
 				{ text: "$AltPersp_TheBanneredMare", id: 0x3271C8 },
 				{ text: "$AltPersp_TheBeeandBarb", id: 0x3457D0 },
 				{ text: "$AltPersp_TheWinkingSkeever", id: 0x3457D2 },
@@ -103,35 +106,35 @@ class MessengerMenu extends MovieClip
 				{ text: "$AltPersp_BraidwoodInn", id: 0x34A8E9 }
 			]),
 			makeDefault("$AltPersp_OverSeas", "$AltPersp_OverSeasDescr", undefined, [
-				{ text: "$AltPersp_Random", id: 0, color: _CSPECIAL },
+				{ text: "$AltPersp_Random", id: OPTION_RANDOM, color: _CSPECIAL },
 				{ text: "$AltPersp_EastEmpireTradingCompany", id: 0x34F9EC },
 				{ text: "$AltPersp_WindhelmDocks", id: 0x34F9EE },
 				{ text: "$AltPersp_DawnstarsShore", id: 0x34F9ED },
 				{ text: "$AltPersp_RavenRockDocks", id: 0x34F9F0 }
 			]),
 			makeDefault("$AltPersp_Criminal", "$AltPersp_CriminalDescr", undefined, [
-				{ text: "$AltPersp_Random", id: 0, color: _CSPECIAL },
+				{ text: "$AltPersp_Random", id: OPTION_RANDOM, color: _CSPECIAL },
 				{ text: "$AltPersp_Whiterun", id: 0x34FA14 },
 				{ text: "$AltPersp_TheRift", id: 0x34FA15 },
 				{ text: "$AltPersp_ThePale", id: 0x34FA1B },
 				{ text: "$AltPersp_Winterhold", id: 0x34FA25 }
 			]),
 			makeDefault("$AltPersp_LeftForDead", "$AltPersp_LeftForDeadDescr", undefined, [
-				{ text: "$AltPersp_Random", id: 0, color: _CSPECIAL },
+				{ text: "$AltPersp_Random", id: OPTION_RANDOM, color: _CSPECIAL },
 				{ text: "$AltPersp_TheRift", id: 0x34FA27 },
 				{ text: "$AltPersp_TheReach", id: 0x34FA29 },
 				{ text: "$AltPersp_Winterhold", id: 0x34FA20 }
 			]),
 			makeDefault("$AltPersp_Shipwrecked", "$AltPersp_ShipwreckedDescr", 0x3877AC),
 			makeDefault("$AltPersp_Home", "$AltPersp_HomeDescr", undefined, [
-				{ text: "$AltPersp_Random", id: 0, color: _CSPECIAL },
+				{ text: "$AltPersp_Random", id: OPTION_RANDOM, color: _CSPECIAL },
 				{ text: "$AltPersp_Whiterun", id: 0x396AD7 },
 				{ text: "$AltPersp_Solitude ", id: 0x3A5DDA },
 				{ text: "$AltPersp_Riften", id: 0x3A5DD9 },
 				{ text: "$AltPersp_Markarth", id: 0x3A5DD8 }
 			]),
 			makeDefault("$AltPersp_Vampire", "$AltPersp_VampireDescr", undefined, [
-				{ text: "$AltPersp_Random", id: 0, color: _CSPECIAL },
+				{ text: "$AltPersp_Random", id: OPTION_RANDOM, color: _CSPECIAL },
 				{ text: "$AltPersp_PinemoonCave", id: 0x3B50DE },
 				{ text: "$AltPersp_BloodletThrone", id: 0x3AAEDC },
 				{ text: "$AltPersp_MovarthsLair", id: 0x3B50E0 },
@@ -140,14 +143,14 @@ class MessengerMenu extends MovieClip
 			makeDefault("$AltPersp_Werewolf", "$AltPersp_WerewolfDescr", 0x3AAEDD),
 			makeDefault("$AltPersp_Forsworn", "$AltPersp_ForswornDescr", 0x46649F),
 			makeDefault("$AltPersp_Guilds", "$AltPersp_GuildsDescr", undefined, [
-				{ text: "$AltPersp_Random", id: 0, color: _CSPECIAL },
+				{ text: "$AltPersp_Random", id: OPTION_RANDOM, color: _CSPECIAL },
 				{ text: "$AltPersp_CollegeofWinterhold", id: 0x3D36E6 },
 				{ text: "$AltPersp_ThievesGuild", id: 0x3CE5E5 },
 				{ text: "$AltPersp_DarkBrotherhood", id: 0x3D36E7 },
 				{ text: "$AltPersp_Companions", id: 0x3D36E8 }
 			]),
 			makeDefault("$AltPersp_Dragonborn", "$AltPersp_DragonbornDescr", undefined, [
-				{ text: "$AltPersp_Random", id: 0, color: _CSPECIAL },
+				{ text: "$AltPersp_Random", id: OPTION_RANDOM, color: _CSPECIAL },
 				{ text: "$AltPersp_VanillaStart", id: 0x3BF197 },
 				{ text: "$AltPersp_HighHrothgar", id: 0x40B191 }
 			])
@@ -177,7 +180,7 @@ class MessengerMenu extends MovieClip
 	var _testID
 	public function onLoad(): Void
 	{
-		// shopLists.addEventListener("showItemsList", this, "onShowItemsList");
+		menu.addEventListener("closeMenu", this, "onCloseMenu");
 
 		// shopLists.itemList.addEventListener("itemPress", this, "onItemSelect");
 
@@ -189,7 +192,7 @@ class MessengerMenu extends MovieClip
 
 	private function test() {
 		var arg = new Array();
-		for (var i = 0; i < 13; i++) {
+		for (var i = 0; i < 0; i++) {
 			arg.push({
 				name: i
 			});
@@ -207,13 +210,29 @@ class MessengerMenu extends MovieClip
 		if (nextClip.handleInput(details, pathToFocus))
 			return true;
 
-		if (GlobalFunc.IsKeyPressed(details) && (details.navEquivalent == NavigationCode.TAB || details.navEquivalent == NavigationCode.SHIFT_TAB)) {
-			// save();
-			// shopLists.OnMenuClose();
-			skse.CloseMenu("CustomMenu");
-		}
 
+		if (GlobalFunc.IsKeyPressed(details)) {
+			switch (details.navEquivalent) {
+				case NavigationCode.TAB :
+				case NavigationCode.SHIFT_TAB :
+				case NavigationCode.ESCAPE :
+					{
+						onCloseMenu({});
+					};
+					break;
+			}
+			// Search hotkey (default space)
+			// if (details.skseKeycode == _searchKey) {
+			// searchWidget.startInput();
+			// return true;
+			// }
+		}
 		return true;
+	}
+
+	public function onCloseMenu(event: Object) {
+		trace("Closing Menu with Option " + event.mod + " / " + event.id);
+		skse.CloseMenu("CustomMenu");
 	}
 
   /* PRIVATE FUNCTIONS */
@@ -258,4 +277,5 @@ class MessengerMenu extends MovieClip
 		lv._this = this;
 		lv.load(path);
 	}
+
 }
