@@ -225,13 +225,13 @@ class OptionList extends MovieClip
 			return;
 		}
 		var entry = _selectedMain;
+		var mod = entry.mod, id = entry.id;
 		if (entry.id != MessengerMenu.OPTION_NONE) {
 			while (entry.id == MessengerMenu.OPTION_NONE || entry.id == MessengerMenu.OPTION_RANDOM) {
 				var r = drawRandom(0, mainOptions.itemCount);
 				entry = mainOptions.getNthObj(r);
 			}
 			// assert entry.id != OPTION_NONE && != OPTION_RANDOM
-			var mod = entry.mod, id = entry.id;
 			if (entry.suboptions && entry.suboptions.length) {
 				if (entry.suboptions.length > 1 || entry.suboptions[0].id != MessengerMenu.OPTION_RANDOM) {
 					do {
