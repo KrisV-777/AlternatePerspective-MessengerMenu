@@ -37,20 +37,10 @@ class MessengerMenu extends MovieClip
 	public var navPanel: ButtonPanel;
 
   /* PRIVATE VARIABLES */
-	// private var _shopItems: Array;	// Forms listed in the shop
-	// private var _extraData: Array;	// assert(_extraData[i] == _shopItems[i].extra)
 
-	private var _switchTabKey: Number;
 	private var _searchKey: Number;
 	private var _searchControls: Object;
 	private var _cancelControls: Object;
-	private var _acceptControls: Object;
-	// Console only controls
-	private var _sortColumnControls: Array;
-	private var _sortOrderControls: Object;
-
-	private var _platform: Number;
-
 
 	/* PAPYRUS API */
 
@@ -155,12 +145,10 @@ class MessengerMenu extends MovieClip
 				{ text: "$AltPersp_HighHrothgar", id: 0x40B191 }
 			])
 		];
-		for (var i = 0; i < arguments[0].length; i++) {
-			// var opt = loadData(arguments[i]);
-			var arg = new Object();
-			arg.enabled = true;
-			arg.text = arguments[0][i].name;
-			options.push(arguments[0][i]);
+		skse.Log("args = " + arguments.length + "/" + arguments[0].length);
+		for (var i = 0; i < arguments.length; i++) {
+			var opt = loadData(arguments[i]);
+			options.push(opt);
 		}
 		menu.setItems(options);
 		gotoAndPlay("fadeIn");
@@ -182,12 +170,10 @@ class MessengerMenu extends MovieClip
 	{
 		menu.addEventListener("closeMenu", this, "onCloseMenu");
 
-		// shopLists.itemList.addEventListener("itemPress", this, "onItemSelect");
-
 		positionFixedElements();
 		navPanel.hideButtons();
 
-		_testID = setTimeout(Delegate.create(this, test), 1000);
+		// _testID = setTimeout(Delegate.create(this, test), 1000);
 	}
 
 	private function test() {
@@ -243,15 +229,6 @@ class MessengerMenu extends MovieClip
 		navPanel.clearButtons();
 
 		navPanel.addButton({text: "$Exit", controls: _cancelControls});
-		// navPanel.addButton({text: "$Search", controls: _searchControls});
-		if (_platform != 0) {
-			navPanel.addButton({text: "$Column", controls: _sortColumnControls});
-			navPanel.addButton({text: "$Order", controls: _sortOrderControls});
-		}
-		if (a_bSelected) {
-			navPanel.addButton({text: "$Buy", controls: Input.Activate});
-		}
-
 		navPanel.updateButtons(true);
 	}
 
