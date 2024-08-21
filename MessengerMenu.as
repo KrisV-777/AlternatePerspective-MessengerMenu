@@ -40,10 +40,9 @@ class MessengerMenu extends MovieClip
 	public function openMenu(/* File Args */)
 	{
 		_addonCount++;
-		skse.Log("args = " + arguments.length + "/" + arguments[0].length);
-		for (var i = 0; i < arguments[0].length; i++) {
+		for (var i = 0; i < arguments.length; i++) {
 			_addonCount++
-			loadData(arguments[0][i]);
+			loadData("../" + arguments[i]);
 		}
 		addonDone()
 	}
