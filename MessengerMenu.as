@@ -13,7 +13,6 @@ import skyui.props.PropertyDataExtender;
 import skyui.defines.Input;
 import skyui.defines.Inventory;
 import skyui.util.GlobalFunctions;
-import skyui.util.ConfigManager;
 import skyui.util.Translator;
 import skyui.components.ButtonPanel;
 
@@ -33,14 +32,46 @@ class MessengerMenu extends MovieClip
 
   /* PRIVATE VARIABLES */
 
-	private var _searchKey: Number;
-	private var _searchControls: Object;
-	private var _cancelControls: Object;
+	private var _addonCount;
+	private var _options;
 
-	/* PAPYRUS API */
+	// Build Menu
 
 	public function openMenu(/* File Args */)
 	{
+		_addonCount++;
+		skse.Log("args = " + arguments.length + "/" + arguments[0].length);
+		for (var i = 0; i < arguments[0].length; i++) {
+			_addonCount++
+			loadData(arguments[0][i]);
+		}
+		addonDone()
+	}
+
+	private function validateConditions(entry)
+	{
+		// IDEA: Add condition parsing
+		entry.enabled = true;	
+	}
+
+	private function addonDone()
+	{
+		_addonCount--;
+		if (_addonCount == 0) {
+			trace(_options.length)
+			menu.setItems(_options);
+			gotoAndPlay("fadeIn");
+		}
+	}
+
+  /* INITIALIZATION */
+
+	public function MessengerMenu()
+	{
+		super();
+		Mouse.addListener(this);
+		FocusHandler.instance.setFocus(this, 0);
+
 		function makeDefault(name, description, id, suboptions) {
 			return {
 				mod: "AlternatePerspective.esp",
@@ -52,8 +83,8 @@ class MessengerMenu extends MovieClip
 				suboptions: suboptions
 			};
 		}
-
-		var options: Array = [
+		_addonCount = 0;
+		_options = [
 			{
 				mod: "N/A",
 				enabled: true,
@@ -140,24 +171,6 @@ class MessengerMenu extends MovieClip
 				{ text: "$AltPersp_HighHrothgar", id: 0x40B191 }
 			])
 		];
-		skse.Log("args = " + arguments.length + "/" + arguments[0].length);
-		for (var i = 0; i < arguments[0].length; i++) {
-			var it = arguments[0][i];
-			var opt = loadData(it);
-			options.push(opt);
-		}
-		menu.setItems(options);
-		gotoAndPlay("fadeIn");
-	}
-
-  /* INITIALIZATION */
-
-	public function MessengerMenu()
-	{
-		super();
-
-		Mouse.addListener(this);
-		FocusHandler.instance.setFocus(this, 0);
 	}
 
 	public function onLoad(): Void
@@ -168,13 +181,13 @@ class MessengerMenu extends MovieClip
 	}
 
 	private function test() {
-		var arg = new Array();
-		for (var i = 0; i < 12; i++) {
-			arg.push({
-				name: i
-			});
-		}
-		openMenu(arg);
+		// var arg = new Array();
+		// for (var i = 0; i < 12; i++) {
+		// 	arg.push({
+		// 		name: i
+		// 	});
+		// }
+		openMenu([["__LEGACY_Sold Out.json"]]);
 	}
 
   /* PUBLIC FUNCTIONS */
@@ -197,11 +210,6 @@ class MessengerMenu extends MovieClip
 					};
 					break;
 			}
-			// Search hotkey (default space)
-			// if (details.skseKeycode == _searchKey) {
-			// searchWidget.startInput();
-			// return true;
-			// }
 		}
 		return true;
 	}
@@ -224,10 +232,36 @@ class MessengerMenu extends MovieClip
 	{
 		var lv = new LoadVars();
 		lv.onData = function(src: String) {
-			var me = this["_this"];
-			me._ready = true;
+			function sortFunc(a, b) {
+				if (a.id == 0)
+					return -1;
+				if (b.id == 0)
+					return 1;
+				if (a.text < b.text)
+					return -1;
+				if (a.text > b.text)
+					return 1;
+				return 0;
+			};
+			try{
+				var obj = JSON.parse(src);
+				for (var i in obj) {
+					var it = obj[i]
+					lv["_this"].validateConditions(it);
+					if (it.suboptions) {
+						it.suboptions.sort(sortFunc);
+					}
+					lv["_this"]._options.push(it);
+				}
+			}catch(ex){
+				var msg = "Failed to load json file: " + this["path"] + ":" + ex.name + ":" + ex.message + ":" + ex.at + ":" + ex.text
+				trace(msg)
+				skse.Log("[Alternate Perspective]" + msg)
+			}
+			lv["_this"].addonDone();
 		};
-		lv._this = this;
+		lv["_this"] = this;
+		lv["path"] = path;
 		lv.load(path);
 	}
 

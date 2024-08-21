@@ -16,7 +16,6 @@ import skyui.components.list.ScrollingList;
 import skyui.filter.ItemTypeFilter;
 import skyui.filter.NameFilter;
 import skyui.filter.SortFilter;
-import skyui.util.ConfigManager;
 import skyui.util.GlobalFunctions;
 import skyui.util.Translator;
 import skyui.util.DialogManager;
@@ -65,8 +64,6 @@ class OptionList extends MovieClip
 		super();
 		GlobalFunctions.addArrayFunctions();
 		EventDispatcher.initialize(this);
-
-		ConfigManager.registerLoadCallback(this,"onConfigLoad");
 		optiondescription.text = ""
 
 		mainOptions.suspended = true;
@@ -193,12 +190,6 @@ class OptionList extends MovieClip
 		TweenLite.to(inactiveList,0.3,{colorTransform:_greyTransform, ease:Linear.easeNone});
 		FocusHandler.instance.setFocus(activeList,0);
 		_activeList = activeList;
-	}
-
-	private function onConfigLoad(event:Object):Void
-	{
-		var config = event.config;
-		_searchKey = config["Input"].controls.pc.search;
 	}
 
 	private function onClickDisabled(event: Object): Void
