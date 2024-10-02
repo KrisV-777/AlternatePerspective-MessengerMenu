@@ -28,8 +28,6 @@ import com.greensock.easing.*;
 
 import skyui.defines.Input;
 import MessengerMenu;
-// import CategoryListV;
-// import ExchangeType;
 
 class OptionList extends MovieClip
 {

@@ -1,5 +1,6 @@
 ﻿import CategoryList;
 
+// Class to represent a vertical category list
 class CategoryListV extends CategoryList {
 	
 	public var iconHeight;
