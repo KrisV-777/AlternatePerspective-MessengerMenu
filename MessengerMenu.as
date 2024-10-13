@@ -214,6 +214,10 @@ class MessengerMenu extends MovieClip
 	}
 
 	public function onCloseMenu(event: Object) {
+		if (event.mod == undefined || event.id == undefined) {
+			skse.Log("Mod or ModId is missing")
+			return
+		}
 		trace("Closing Menu with Option " + event.mod + " / " + event.id);
 		skse.SendModEvent("AP_MessengerMenuSelect", event.mod, event.id);
 		TweenLite.to(this, 0.6, {_alpha: 0, onComplete: skse.CloseMenu, onCompleteParams: ["CustomMenu"]});
