@@ -144,7 +144,7 @@ class MessengerMenu extends MovieClip
 			makeDefault("$AltPersp_Home", "$AltPersp_HomeDescr", undefined, [
 				{ text: "$AltPersp_Random", id: OPTION_RANDOM, color: _CSPECIAL },
 				{ text: "$AltPersp_Whiterun", id: 0x396AD7 },
-				{ text: "$AltPersp_Solitude ", id: 0x3A5DDA },
+				{ text: "$AltPersp_Solitude", id: 0x3A5DDA },
 				{ text: "$AltPersp_Riften", id: 0x3A5DD9 },
 				{ text: "$AltPersp_Markarth", id: 0x3A5DD8 }
 			]),
