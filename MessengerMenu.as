@@ -242,14 +242,44 @@ class MessengerMenu extends MovieClip
 					return 1;
 				return 0;
 			};
+			function toString(a) {
+				if (a.length == undefined) {
+					return parseInt(a)
+				}
+				for (var i = 0; i < a.length; i++) {
+					var c = a.charAt(i)
+					switch (c) {
+						case 'A':
+						case 'B':
+						case 'C':
+						case 'D':
+						case 'E':
+						case 'F':
+						case 'a':
+						case 'b':
+						case 'c':
+						case 'd':
+						case 'e':
+						case 'f':
+							return parseInt(a, 16)
+					}
+				}
+				return parseInt(a)
+			}
 			try{
 				var obj = JSON.parse(src);
 				for (var i in obj) {
 					var it = obj[i]
-					lv["_this"].validateConditions(it);
+					if (it.id) {
+						it.id = toString(it.id)
+					}
 					if (it.suboptions) {
+						for (var obj in it.suboptions) {
+							obj.id = toString(obj.id)
+						}
 						it.suboptions.sort(sortFunc);
 					}
+					lv["_this"].validateConditions(it);
 					lv["_this"]._options.push(it);
 				}
 			}catch(ex){
