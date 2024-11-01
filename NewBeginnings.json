@@ -1,0 +1,299 @@
+[
+  {
+    "color": "0x057203",
+    "mod": "Alternate Perspective -- New Beginnings.esp",
+    "text": "Addict",
+    "id": "800",
+    "description": "I can't believe I've finally found the den! The shaking has gotten worse ever since I left home, but now my suffering is at an end. I do have a strange feeling about this den, though..."
+  },
+  {
+    "color": "0x057203",
+    "mod": "Alternate Perspective -- New Beginnings.esp",
+    "text": "Dwemer Ruin",
+    "id": "81C",
+    "description": "I knew I shouldn't have touched that orb, but my curiosity got the better of me. I pray to the Gods that there's a way out of here..."
+  },
+  {
+    "color": "0x057203",
+    "mod": "Alternate Perspective -- New Beginnings.esp",
+    "text": "Alchemist",
+    "id": "80A",
+    "description": "It's been a while since I left home to become an alchemist, and I can't help but long for something more exciting to do than picking flowers. Maybe it's time I left this grove behind..."
+  },
+  {
+    "color": "0x057203",
+    "mod": "Alternate Perspective -- New Beginnings.esp",
+    "text": "At Angis Camp",
+    "id": "858",
+    "description": "I have come across the camp of a markswoman named Angi. Maybe I should ask her to train me."
+  },
+  {
+    "color": "0x057203",
+    "mod": "Alternate Perspective -- New Beginnings.esp",
+    "text": "Beggar",
+    "description": "I don't even remember how long I've been living here in this gods-forsaken place. It's time I got out of here and became an adventurer or joined the Thieves' Guild or the Forsworn or something along those lines. Gods know anything would be better than continuing to rot away in this dump.",
+    "suboptions": [
+      {
+        "id": "0",
+        "text": "$AltPersp_Random"
+      },
+      {
+        "id": "85F",
+        "text": "Riften"
+      },
+      {
+        "id": "860",
+        "text": "Markarth"
+      }
+    ]
+  },
+  {
+    "color": "0x057203",
+    "mod": "Alternate Perspective -- New Beginnings.esp",
+    "text": "Jailed",
+    "description": "Well, here I am... I can't believe those imbecile guards actually caught me. If I don't want to serve my time in here, I better start looking for a way out.",
+    "suboptions": [
+      {
+        "id": "0",
+        "text": "$AltPersp_Random"
+      },
+      {
+        "id": "861",
+        "text": "Whiterun"
+      },
+      {
+        "id": "869",
+        "text": "The Rift"
+      },
+      {
+        "id": "862",
+        "text": "Eastmarch"
+      },
+      {
+        "id": "864",
+        "text": "Haarfinger"
+      },
+      {
+        "id": "868",
+        "text": "The Reach"
+      },
+      {
+        "id": "863",
+        "text": "Falkreath"
+      },
+      {
+        "id": "865",
+        "text": "Hjaalmach"
+      },
+      {
+        "id": "866",
+        "text": "The Pale"
+      },
+      {
+        "id": "86A",
+        "text": "Winterhold"
+      },
+      {
+        "id": "867",
+        "text": "Raven Rock"
+      }
+    ]
+  },
+  {
+    "color": "0x057203",
+    "mod": "Alternate Perspective -- New Beginnings.esp",
+    "text": "Mercenary",
+    "description": "There's an old Cyrodiilic proverb: \"The riskier the road, the greater the profit.\" This civil war in Skyrim is bound to be good for business. I'd be a fool if I didn't take this opportunity. After all, I can hardly make less money than back home...",
+    "suboptions": [
+      {
+        "id": "0",
+        "text": "$AltPersp_Random"
+      },
+      {
+        "id": "86B",
+        "text": "Cyrodiil"
+      },
+      {
+        "id": "86C",
+        "text": "Hammerfell"
+      },
+      {
+        "id": "86D",
+        "text": "High Rock"
+      },
+      {
+        "id": "86E",
+        "text": "Northern Morrowind"
+      },
+      {
+        "id": "86F",
+        "text": "Southern Morrowind"
+      }
+    ]
+  },
+  {
+    "color": "0x057203",
+    "mod": "Alternate Perspective -- New Beginnings.esp",
+    "text": "Merchant",
+    "description": "There's an old Cyrodiilic proverb: \"The riskier the road, the greater the profit.\" This civil war in Skyrim is bound to be good for business. I'd be a fool if I didn't take this opportunity. After all, I can hardly make less money than back home...",
+    "suboptions": [
+      {
+        "id": "0",
+        "text": "$AltPersp_Random"
+      },
+      {
+        "id": "870",
+        "text": "Cyrodiil"
+      },
+      {
+        "id": "871",
+        "text": "Hammerfell"
+      },
+      {
+        "id": "872",
+        "text": "High Rock"
+      },
+      {
+        "id": "873",
+        "text": "Northern Morrowind"
+      },
+      {
+        "id": "874",
+        "text": "Southern Morrowind"
+      }
+    ]
+  },
+  {
+    "color": "0x057203",
+    "mod": "Alternate Perspective -- New Beginnings.esp",
+    "text": "Pilgrim (Shrine)",
+    "description": "Depending on your choice, you spawn at the Shrine of Azura, the Sacellum of Boethiah, the Shrine of Mehrunes Dagon, the Eldergleam Sanctuary, the Statue to Meridia, the Shrine of Peryite, Stendarr's Beacon, or the Hall of the Vigilant with appropriate equipment and enough provisions to continue your travels.",
+    "suboptions": [
+      {
+        "id": "0",
+        "text": "$AltPersp_Random"
+      },
+      {
+        "id": "83C",
+        "text": "Shrine of Azura"
+      },
+      {
+        "id": "83A",
+        "text": "Shrine of Boethiah"
+      },
+      {
+        "id": "842",
+        "text": "Shrine of Mehrunes Dagon"
+      },
+      {
+        "id": "838",
+        "text": "The Eldergleam Sanctuary"
+      },
+      {
+        "id": "840",
+        "text": "Statue of Meridia"
+      },
+      {
+        "id": "83E",
+        "text": "Shrine of Peryite"
+      },
+      {
+        "id": "835",
+        "text": "Stendarr's Beacon"
+      },
+      {
+        "id": "881",
+        "text": "Hall of the Vigilant"
+      }
+    ]
+  },
+  {
+    "color": "0x057203",
+    "mod": "Alternate Perspective -- New Beginnings.esp",
+    "text": "Pilgrim (Temple)",
+    "description": "I have finally arrived at the temple. Now that I have received the blessings of the Divines, I should start looking for work in town. I can't go back home after all...",
+    "suboptions": [
+      {
+        "id": "0",
+        "text": "$AltPersp_Random"
+      },
+      {
+        "id": "876",
+        "text": "Temple of the Divines"
+      },
+      {
+        "id": "875",
+        "text": "Temple of Dibella"
+      },
+      {
+        "id": "877",
+        "text": "Temple of Kynareth"
+      },
+      {
+        "id": "878",
+        "text": "Temple of Mara"
+      },
+      {
+        "id": "879",
+        "text": "Temple of Talos"
+      }
+    ]
+  },
+  {
+    "color": "0x057203",
+    "mod": "Alternate Perspective -- New Beginnings.esp",
+    "text": "Thalmor Prisoner",
+    "description": "I've actually been imprisoned by those gods-damn Thalmor! If I don't want to be tortured until I renounce my faith in Talos, now is the time to get out of here. Those guards don't seem particularly attentive...",
+    "id": "829"
+  },
+  {
+    "color": "0x057203",
+    "mod": "Alternate Perspective -- New Beginnings.esp",
+    "text": "Vampire",
+    "description": "A few days ago I was struck down by an intense fever. Luckily, none of the fools that are my family seem to have recognized my symptoms for what they were, so they entombed me here after my death. Now I'm finally free to leave them behind and start a new life.",
+    "suboptions": [
+      {
+        "id": "0",
+        "text": "$AltPersp_Random"
+      },
+      {
+        "id": "87D",
+        "text": "Solitude"
+      },
+      {
+        "id": "87A",
+        "text": "Falkreath"
+      },
+      {
+        "id": "87E",
+        "text": "Whiterun"
+      },
+      {
+        "id": "87C",
+        "text": "Riften"
+      },
+      {
+        "id": "87F",
+        "text": "Windhelm"
+      },
+      {
+        "id": "87B",
+        "text": "Markarth"
+      }
+    ]
+  },
+  {
+    "color": "0x057203",
+    "mod": "Alternate Perspective -- New Beginnings.esp",
+    "text": "Warlock",
+    "description": "It has been how long since I was accepted into this coven? Months? Years? And what have I been doing all that time? I can count the number of times I've left this cave on one hand. It is time I leave and explore the outside world.",
+    "id": "820"
+  },
+  {
+    "color": "0x057203",
+    "mod": "Alternate Perspective -- New Beginnings.esp",
+    "text": "Werewolf",
+    "description": "I've now been staying with Majni's pack for quite a while, but the others still regard me as a stranger. I've got enough gold to pay for passage to Skyrim, so maybe I should leave and start traveling again...",
+    "id": "81F"
+  }
+]

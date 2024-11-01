@@ -180,13 +180,8 @@ class MessengerMenu extends MovieClip
 	}
 
 	private function test() {
-		// var arg = new Array();
-		// for (var i = 0; i < 12; i++) {
-		// 	arg.push({
-		// 		name: i
-		// 	});
-		// }
-		openMenu([["__LEGACY_Sold Out.json"]]);
+		var folder = "AlternatePerspective-MessengerMenu";
+		openMenu([[folder + "/NewBeginnings.json"]]);
 	}
 
   /* PUBLIC FUNCTIONS */
@@ -271,22 +266,22 @@ class MessengerMenu extends MovieClip
 				return parseInt(a)
 			}
 			try{
-				var obj = JSON.parse(src);
-				for (var i in obj) {
-					var it = obj[i]
+				var json = JSON.parse(src);
+				for (var i = 0; i < json.length; i++) {
+					var it = json[i]
 					if (it.id) {
 						it.id = toString(it.id)
 					}
 					if (it.suboptions) {
-						for (var obj in it.suboptions) {
-							obj.id = toString(obj.id)
+						for (var opt in it.suboptions) {
+							opt.id = toString(opt.id)
 						}
 						it.suboptions.sort(sortFunc);
 					}
 					lv["_this"].validateConditions(it);
 					lv["_this"]._options.push(it);
 				}
-			}catch(ex){
+			} catch(ex) {
 				var msg = "Failed to load json file: " + this["path"] + ":" + ex.name + ":" + ex.message + ":" + ex.at + ":" + ex.text
 				trace(msg)
 				skse.Log("[Alternate Perspective]" + msg)
