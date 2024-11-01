@@ -28,6 +28,7 @@ class MessengerMenu extends MovieClip
 	/* STAGE */
 
 	public var menu: OptionList;
+	public var loadingWidget: MovieClip;
 	public var background: MovieClip;
 
   /* PRIVATE VARIABLES */
@@ -59,7 +60,8 @@ class MessengerMenu extends MovieClip
 		if (_addonCount == 0) {
 			trace(_options.length)
 			menu.setItems(_options);
-			gotoAndPlay("fadeIn");
+			loadingWidget._visible = false;
+			TweenLite.to(menu, 1.0, {_alpha: 100});
 		}
 	}
 
@@ -174,6 +176,33 @@ class MessengerMenu extends MovieClip
 
 	public function onLoad(): Void
 	{
+		_global.gfxExtensions = true;
+		
+		var minXY: Object = {x: Stage.visibleRect.x + Stage.safeRect.x, y: Stage.visibleRect.y + Stage.safeRect.y};
+    var maxXY: Object = {x: Stage.visibleRect.x + Stage.visibleRect.width - Stage.safeRect.x, y: Stage.visibleRect.y + Stage.visibleRect.height - Stage.safeRect.y};
+
+    //  (minXY.x, minXY.y) _____________ (maxXY.x, minXY.y)
+    //                    |             |
+    //                    |     THE     |
+    //                    |    STAGE    |
+    //  (minXY.x, maxXY.y)|_____________|(maxXY.x, maxXY.y)
+
+		globalToLocal(minXY);
+		globalToLocal(maxXY);
+		trace("Stage: " + minXY.x + ", " + minXY.y + " - " + maxXY.x + ", " + maxXY.y);
+
+		background._x = (minXY.x + maxXY.x) / 2;
+		background._y = (minXY.y + maxXY.y) / 2;
+		background._width = maxXY.x - minXY.x;
+		background._height = maxXY.y - minXY.y;
+		
+		var stageMidY = (minXY.y + maxXY.y) / 2;
+		var stageHeight = maxXY.y - minXY.y;
+		menu._x = (minXY.x + maxXY.x) / 2;
+		menu._y = stageMidY - stageMidY * 0.1;
+		menu._height = stageHeight * 0.7;
+		menu._width = menu._height * 1.76;
+
 		menu.addEventListener("closeMenu", this, "onCloseMenu");
 
 		// setTimeout(Delegate.create(this, test), 1000);
@@ -274,7 +303,7 @@ class MessengerMenu extends MovieClip
 					}
 					if (it.suboptions) {
 						for (var opt in it.suboptions) {
-							opt.id = toString(opt.id)
+							opt["id"] = toString(opt["id"])
 						}
 						it.suboptions.sort(sortFunc);
 					}
