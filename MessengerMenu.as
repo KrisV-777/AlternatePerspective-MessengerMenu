@@ -1,4 +1,4 @@
-import gfx.io.GameDelegate;
+﻿import gfx.io.GameDelegate;
 import gfx.utils.Delegate;
 import Shared.GlobalFunc;
 import gfx.ui.NavigationCode;
@@ -277,26 +277,24 @@ class MessengerMenu extends MovieClip
 			function toString(a) {
 				if (a.length == undefined) {
 					return parseInt(a)
+				} else if (a == "0x") {
+					return 0
 				}
-				for (var i = 0; i < a.length; i++) {
-					var c = a.charAt(i)
-					switch (c) {
-						case 'A':
-						case 'B':
-						case 'C':
-						case 'D':
-						case 'E':
-						case 'F':
-						case 'a':
-						case 'b':
-						case 'c':
-						case 'd':
-						case 'e':
-						case 'f':
-							return parseInt(a, 16)
+				var base = 10;
+				if (a.length > 2 && a.charAt(0) == '0' && a.charAt(1) == 'x') {
+					base = 16;
+				} else {
+					for (var i = 0; i < a.length; i++) {
+						var c = a.charAt(i)
+						if (c == 'A' || c == 'B' || c == 'C' || c == 'D' || c == 'E' || c == 'F' ||
+									c == 'a' || c == 'b' || c == 'c' || c == 'd' || c == 'e' || c == 'f') {
+							base = 16;
+							break;
+						}
 					}
 				}
-				return parseInt(a)
+				trace("Converted " + a + " to " + parseInt(a, base) + " with base " + base)
+				return parseInt(a, base)
 			}
 			try{
 				var json = JSON.parse(src);
@@ -306,8 +304,9 @@ class MessengerMenu extends MovieClip
 						it.id = toString(it.id)
 					}
 					if (it.suboptions) {
-						for (var opt in it.suboptions) {
-							opt["id"] = toString(opt["id"])
+						for (var j = 0; j < it.suboptions.length; j++) {
+							var subobj = it.suboptions[j];
+							subobj.id = toString(subobj.id);
 						}
 						it.suboptions.sort(sortFunc);
 					}
