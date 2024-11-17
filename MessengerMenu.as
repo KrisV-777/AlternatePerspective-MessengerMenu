@@ -1,4 +1,4 @@
-﻿import gfx.io.GameDelegate;
+import gfx.io.GameDelegate;
 import gfx.utils.Delegate;
 import Shared.GlobalFunc;
 import gfx.ui.NavigationCode;
@@ -238,14 +238,18 @@ class MessengerMenu extends MovieClip
 	}
 
 	public function onCloseMenu(event: Object) {
-		if (event.mod == undefined || event.id == undefined) {
-			skse.Log("Mod or ModId is missing")
-			return
+		if (!event.mod || !event.id) {
+			var err = "Invalid Mod or ModId: " + event.mod + " / " + event.id;
+			skse.Log("[Alternate Perspective]" + err);
+			trace(err);
+			event.mod = "";
+			event.id = OPTION_NONE;
 		}
-		trace("Closing Menu with Option " + event.mod + " / " + event.id);
+		var msg = "Closing Menu with Option " + event.mod + " / " + event.id;
+		skse.Log("[Alternate Perspective]" + msg);
+		trace(msg);
 		skse.SendModEvent("AP_MessengerMenuSelect", event.mod, event.id);
 		TweenLite.to(this, 0.6, {_alpha: 0, onComplete: skse.CloseMenu, onCompleteParams: ["CustomMenu"]});
-		// skse.CloseMenu("CustomMenu");
 	}
 
   /* PRIVATE FUNCTIONS */
