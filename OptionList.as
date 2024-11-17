@@ -224,15 +224,20 @@ class OptionList extends MovieClip
 				entry = mainOptions.getNthObj(r);
 			}
 			// assert entry.id != OPTION_NONE && != OPTION_RANDOM
+			trace("Selected: " + entry.text + " (" + entry.id + " / " + entry.mod + ")");
 			if (entry.suboptions && entry.suboptions.length) {
 				if (entry.suboptions.length > 1 || entry.suboptions[0].id != MessengerMenu.OPTION_RANDOM) {
 					do {
 						var r = drawRandom(0, entry.suboptions.length);
 						var it = entry.suboptions[r];
-						mod = it.mod || mod;
+						mod = it.mod ? it.mod : entry.mod;
 						id = it.id;
+						trace("Suboption: " + it.text + " (" + id + " / " + mod + ")");
 					} while (id == MessengerMenu.OPTION_RANDOM);
 				}
+			} else {
+				id = entry.id;
+				mod = entry.mod;
 			}
 		}
 		dispatchEvent({type: "closeMenu", id: id, mod: mod});
