@@ -40,8 +40,7 @@ class MessengerMenu extends MovieClip
 
 	public function openMenu(/* File Args */)
 	{
-		_addonCount += 2;
-		loadData("../SKSE/AlternatePerspective/AlternatePerspective.json");
+		_addonCount++;
 		for (var i = 0; i < arguments.length; i++) {
 			_addonCount++;
 			loadData("../" + arguments[i]);
